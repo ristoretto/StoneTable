@@ -5,7 +5,7 @@ public class ItemScript : MonoBehaviour {
     public Transform GameHandler;
 	// Use this for initialization
 	void Start () {
-	
+        GameHandler = GameObject.Find("GameHandler").transform;
 	}
 	
 	// Update is called once per frame
