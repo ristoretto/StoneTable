@@ -6,13 +6,18 @@ public class Game : MonoBehaviour {
     public Transform positionOFQue;
     public List<Transform> contentsOfQue = new List<Transform>();
     public List<Transform> allObjects = new List<Transform>();
+    public List<Transform> containerObjects = new List<Transform>();
+    public List<Transform> wasteBin = new List<Transform>();
+    public List<ItemScript.itemType> searchedForTypes = new List<ItemScript.itemType>();
     public float height;
+    public int wrongs;
+    public int totalItemsSaved;
     public float currentSpeed = 10;
     public float timer = 0;
     public Transform itemInHand = null;
     // Use this for initialization
 	void Start () {
-	
+        searchedForTypes.Add(ItemScript.itemType.Rock);
 	}
 	
 	// Update is called once per frame
@@ -33,9 +38,11 @@ public class Game : MonoBehaviour {
             {
                 if (y == x)
                 {
-                    contentsOfQue.Add(allObjects.ToArray()[y]);
+
                     Debug.Log("An new item has spawned and neeb tewbed everyone!");
-                    Instantiate(allObjects.ToArray()[y]);
+                    Transform tra = Instantiate(allObjects.ToArray()[y]);
+
+                    contentsOfQue.Add(tra);
                 }
             }
         }
