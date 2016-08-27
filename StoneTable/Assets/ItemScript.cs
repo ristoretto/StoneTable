@@ -3,6 +3,11 @@ using System.Collections;
 
 public class ItemScript : MonoBehaviour {
     public Transform GameHandler;
+    public enum itemType
+    {
+        Rock, Paper, Scissor
+    }
+    public itemType type;
 	// Use this for initialization
 	void Start () {
         GameHandler = GameObject.Find("GameHandler").transform;
@@ -21,7 +26,7 @@ public class ItemScript : MonoBehaviour {
     {
         if (GameHandler.GetComponent<Game>().itemInHand != transform) {
             GameHandler.GetComponent<Game>().itemInHand = transform;
-            GameHandler.GetComponent<Game>().contentsOfQue.Remove(transform);
+            GameHandler.GetComponent<Game>().contentsOfQue.Remove(GameHandler.GetComponent<Game>().itemInHand);
         }
         else
         {
