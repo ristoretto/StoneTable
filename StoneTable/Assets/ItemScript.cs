@@ -5,7 +5,7 @@ public class ItemScript : MonoBehaviour {
     public Transform GameHandler;
     public enum itemType
     {
-        Rock, Paper, Scissor
+        Wood, Rock, Water
     }
     public itemType type;
 	// Use this for initialization
