@@ -14,7 +14,7 @@ public class ItemScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	/*void Update () {
         if (GameHandler.GetComponent<Game>().itemInHand != null) {
             if (GameHandler.GetComponent<Game>().itemInHand.Equals(transform))
             {
@@ -33,5 +33,5 @@ public class ItemScript : MonoBehaviour {
             GameHandler.GetComponent<Game>().itemInHand = null;
             GameHandler.GetComponent<Game>().contentsOfQue.Add(transform);
         }
-    }
+    }*/
 }
