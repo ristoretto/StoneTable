@@ -15,9 +15,10 @@ public class Game : MonoBehaviour {
     public float height;
     public int wrongs = 0;
     public int points = 0;
+    public float totalTimer = 15;
     public List<Sprite> imageList = new List<Sprite>();
     public int totalItemsSaved;
-    public float currentSpeed = 3;
+    public float currentSpeed = 1;
     public float timer = 0;
     public Transform itemInHand = null;
     // Use this for initialization
@@ -27,7 +28,7 @@ public class Game : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        totalTimer -= Time.deltaTime;
         updateScore();
         updateScoreBuilding();
         timer += Time.deltaTime;
@@ -93,8 +94,7 @@ public class Game : MonoBehaviour {
 
     }
     void updateScore() {
-
-        Score.GetComponent<Text>().text = "StoneTable \n age " + (100 + points);
+        Score.GetComponent<Text>().text = "" + ((int)totalTimer);
     }
 
 }
