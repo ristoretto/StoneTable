@@ -88,7 +88,7 @@ public class Game : MonoBehaviour {
     {
         if (points >= 0)
         {
-            scoreImage.GetComponent<Image>().sprite = imageList.ToArray()[points / 2];
+            scoreImage.GetComponent<Image>().sprite = imageList.ToArray()[points / 4];
         }
 
     }
