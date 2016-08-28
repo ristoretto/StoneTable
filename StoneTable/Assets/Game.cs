@@ -98,7 +98,7 @@ public class Game : MonoBehaviour {
     }
     void updateScore() {
 
-        Score.GetComponent<Text>().text = "Age:" + (100 + points);
+        Score.GetComponent<Text>().text = "StoneTable \n age " + (100 + points);
     }
 
 }
