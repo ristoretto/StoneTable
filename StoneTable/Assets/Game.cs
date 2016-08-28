@@ -1,17 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 public class Game : MonoBehaviour {
 
+    public GameObject Score;
     public Transform positionOFQue;
     public List<GameObject> contentsOfQue = new List<GameObject>();
     public List<Transform> allObjects = new List<Transform>();
     public List<Transform> containerObjects = new List<Transform>();
     public List<Transform> wasteBin = new List<Transform>();
+    public GameObject scoreImage;
     public List<ItemScript.itemType> searchedForTypes = new List<ItemScript.itemType>();
     public float height;
     public int wrongs = 0;
     public int points = 0;
+    public List<Sprite> imageList = new List<Sprite>();
     public int totalItemsSaved;
     public float currentSpeed = 3;
     public float timer = 0;
@@ -23,6 +27,9 @@ public class Game : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        updateScore();
+        updateScoreBuilding();
         timer += Time.deltaTime;
         int current = 0;
         foreach(GameObject t in contentsOfQue)
@@ -47,6 +54,14 @@ public class Game : MonoBehaviour {
                     tra2.SetParent(GameObject.Find("Canvas").transform);
                     tra2.transform.localScale = new Vector3(5.78f, 5.8f, 1);
                     contentsOfQue.Add(tra2.gameObject);
+                    foreach (GameObject t in contentsOfQue)
+                    {
+                        if (t != null)
+                        {
+                            t.transform.position = new Vector3(positionOFQue.transform.position.x, positionOFQue.transform.position.y + (height * current));
+                        }
+                        current++;
+                    }
                 }
             }
         }
@@ -57,22 +72,33 @@ public class Game : MonoBehaviour {
         //This is hardcoded
         //Change if you add more hardcore manaaa momomomom xoxooxoxoxox 1123121 10101010101
         Debug.Log("Changed Material!!!! xoxooxox mamamam");
-        int x = 1;/*Random.Range(0, 2);*/
-            
-            switch (x)
+        int x = Random.Range(0, 3);
+        searchedForTypes.Clear();
+        switch (x)
             {
                 case 1:
-                    searchedForTypes.ToArray()[0] = ItemScript.itemType.Rock;
+                    searchedForTypes.Add(ItemScript.itemType.Rock);
                     break;
                 case 0:
-                    searchedForTypes.ToArray()[0] = ItemScript.itemType.Wood;
+                searchedForTypes.Add(ItemScript.itemType.Wood);
                     break;
                 case 2:
-                    searchedForTypes.ToArray()[0] = ItemScript.itemType.Water;
+                searchedForTypes.Add(ItemScript.itemType.Water);
                     break;
             }
     
     }
+    void updateScoreBuilding()
+    {
+        if (points >= 0)
+        {
+            scoreImage.GetComponent<Image>().sprite = imageList.ToArray()[points / 2];
+        }
 
+    }
+    void updateScore() {
+
+        Score.GetComponent<Text>().text = "Age:" + (100 + points);
+    }
 
 }
