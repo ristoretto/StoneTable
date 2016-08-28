@@ -23,7 +23,8 @@ public class WasteBinEnter : MonoBehaviour {
                 {
                     Destroy(o.gameObject);
                     GameObject.Find("GameHandler").GetComponent<Game>().contentsOfQue.Remove(o);
-                  //  Debug.Log("Yay!");
+                    //  Debug.Log("Yay!");
+                    updateThings();
                     break;
                 }
                 else
@@ -32,12 +33,23 @@ public class WasteBinEnter : MonoBehaviour {
                     o.GetComponent<ItemScript>().GameHandler.GetComponent<Game>().wrongs++;
                     GameObject.Find("GameHandler").GetComponent<Game>().contentsOfQue.Remove(o);
                     Debug.Log("Nooo!");
+                    updateThings();
                     break;
                 }
             }
         }
     }
-
+    public void updateThings()
+    {
+        Game game = GameObject.Find("GameHandler").GetComponent<Game>();
+        int count = 0;
+        foreach (GameObject o in game.contentsOfQue)
+        {
+            o.GetComponent<ItemScript>().setTravelThing(new Vector3(GameObject.Find("PositionOfQue").transform.position.x, GameObject.Find("PositionOfQue").transform.position.y + (128 * (count)), 0));
+            count++;
+        }
+        //tra2.GetComponent<ItemScript>().setTravelThing(new Vector3(positionOFQue.transform.position.x, positionOFQue.transform.position.y + (128 * (contentsOfQue.Count - 1)), 0));
+    }
     public void buttonPressCollector()
     {
         //Hitta den som är längst ner
@@ -52,6 +64,7 @@ public class WasteBinEnter : MonoBehaviour {
                     GameObject.Find("GameHandler").GetComponent<Game>().contentsOfQue.Remove(o);
                     Debug.Log("Yay!");
                     addPoints();
+                    updateThings();
                     GameObject.Find("GameHandler").GetComponent<Game>().ChangeMaterial();
                     break;
                 }
@@ -62,6 +75,7 @@ public class WasteBinEnter : MonoBehaviour {
                     GameObject.Find("GameHandler").GetComponent<Game>().contentsOfQue.Remove(o);
                     Debug.Log("Nooo!");
                     removePoints();
+                    updateThings();
                     break;
                 }
             }

@@ -35,7 +35,7 @@ public class Game : MonoBehaviour {
         foreach(GameObject t in contentsOfQue)
         {
             if (t != null) {
-                t.transform.position = new Vector3(positionOFQue.transform.position.x, positionOFQue.transform.position.y + (height * current));
+
             }
             current++;
         }
@@ -44,23 +44,19 @@ public class Game : MonoBehaviour {
             Debug.Log(points);
             timer = 0;
             int x = Random.Range(0, allObjects.Count);
-            for (int y = 0; y < allObjects.Count; y++)
-            {
-                if (y == x)
+            if (contentsOfQue.Count < 5) {
+                for (int y = 0; y < allObjects.Count; y++)
                 {
-                    Debug.Log("An new item has spawned and neeb tewbed everyone!");
-                    Object tra = Instantiate(allObjects.ToArray()[y], GameObject.Find("Canvas").transform.position, Quaternion.identity);
-                    Transform tra2 = (Transform)tra;
-                    tra2.SetParent(GameObject.Find("Canvas").transform);
-                    tra2.transform.localScale = new Vector3(5.78f, 5.8f, 1);
-                    contentsOfQue.Add(tra2.gameObject);
-                    foreach (GameObject t in contentsOfQue)
+                    if (y == x)
                     {
-                        if (t != null)
-                        {
-                            t.transform.position = new Vector3(positionOFQue.transform.position.x, positionOFQue.transform.position.y + (height * current));
-                        }
-                        current++;
+                        Debug.Log("An new item has spawned and neeb tewbed everyone!");
+                        Object tra = Instantiate(allObjects.ToArray()[y], GameObject.Find("Canvas").transform.position, Quaternion.identity);
+                        Transform tra2 = (Transform)tra;
+                        tra2.SetParent(GameObject.Find("Canvas").transform);
+                        tra2.transform.localScale = new Vector3(5.78f, 5.8f, 1);
+                        tra2.position = new Vector3(positionOFQue.transform.position.x, 1000, 0);
+                        contentsOfQue.Add(tra2.gameObject);
+                        tra2.GetComponent<ItemScript>().setTravelThing(new Vector3(positionOFQue.transform.position.x, positionOFQue.transform.position.y + (128 * (contentsOfQue.Count - 1)), 0));
                     }
                 }
             }
