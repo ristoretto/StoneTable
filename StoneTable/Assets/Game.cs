@@ -54,7 +54,7 @@ public class Game : MonoBehaviour {
                         Transform tra2 = (Transform)tra;
                         tra2.SetParent(GameObject.Find("Canvas").transform);
                         tra2.transform.localScale = new Vector3(5.78f, 5.8f, 1);
-                        tra2.position = new Vector3(positionOFQue.transform.position.x, 1000, 0);
+                        tra2.position = new Vector3(positionOFQue.transform.position.x, 2000, 0);
                         contentsOfQue.Add(tra2.gameObject);
                         tra2.GetComponent<ItemScript>().setTravelThing(new Vector3(positionOFQue.transform.position.x, positionOFQue.transform.position.y + (128 * (contentsOfQue.Count - 1)), 0));
                     }

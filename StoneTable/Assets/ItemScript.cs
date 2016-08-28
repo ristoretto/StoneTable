@@ -5,7 +5,7 @@ public class ItemScript : MonoBehaviour {
     public Transform GameHandler;
     public Vector3 startMarker;
     public Vector3 endMarker;
-    private float speed = 300.0f;
+    private float speed = 500.0f;
     private float startTime;
     private float journeyLength;
     public enum itemType
