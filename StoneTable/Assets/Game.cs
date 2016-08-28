@@ -28,6 +28,11 @@ public class Game : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (totalTimer <= 0)
+        {
+
+            return;
+        }
         totalTimer -= Time.deltaTime;
         updateScore();
         updateScoreBuilding();
