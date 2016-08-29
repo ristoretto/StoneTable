@@ -4,6 +4,7 @@ using System.Collections;
 public class PlaySound : MonoBehaviour {
 
     public AudioSource audio1;
+    public GameObject trash;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +19,7 @@ public class PlaySound : MonoBehaviour {
     public void PressButton() {
 
         audio1.Play();
+        trash.GetComponent<Animator>().SetTrigger("Flipp");
 
     }
 }

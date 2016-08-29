@@ -13,6 +13,7 @@ public class Game : MonoBehaviour {
     public GameObject textTimer;
     public GameObject textScore;
     public Transform positionOFQue;
+    public Transform positionOFQueStart;
     public List<GameObject> contentsOfQue = new List<GameObject>();
     public List<Transform> allObjects = new List<Transform>();
     public List<Transform> containerObjects = new List<Transform>();
@@ -68,7 +69,7 @@ public class Game : MonoBehaviour {
         }
         if (timer > currentSpeed)
         {
-            Debug.Log(points);
+            //Debug.Log(points);
             timer = 0;
             int x = Random.Range(0, allObjects.Count);
             if (contentsOfQue.Count < 5) {
@@ -76,12 +77,12 @@ public class Game : MonoBehaviour {
                 {
                     if (y == x)
                     {
-                        Debug.Log("An new item has spawned and neeb tewbed everyone!");
+                        //Debug.Log("An new item has spawned and neeb tewbed everyone!");
                         Object tra = Instantiate(allObjects.ToArray()[y], GameObject.Find("Canvas").transform.position, Quaternion.identity);
                         Transform tra2 = (Transform)tra;
                         tra2.SetParent(GameObject.Find("Canvas").transform);
                         tra2.transform.localScale = new Vector3(5.78f, 5.8f, 1);
-                        tra2.position = new Vector3(positionOFQue.transform.position.x, 1725, 0);
+                        tra2.position = new Vector3(positionOFQue.transform.position.x, positionOFQueStart.transform.position.y, 0);
                         contentsOfQue.Add(tra2.gameObject);
                         tra2.GetComponent<ItemScript>().setTravelThing(new Vector3(positionOFQue.transform.position.x, positionOFQue.transform.position.y + (128 * (contentsOfQue.Count - 1)), 0));
                     }
@@ -94,7 +95,7 @@ public class Game : MonoBehaviour {
         //Din mamma hej hej
         //This is hardcoded
         //Change if you add more hardcore manaaa momomomom xoxooxoxoxox 1123121 10101010101
-        Debug.Log("Changed Material!!!! xoxooxox mamamam");
+        //Debug.Log("Changed Material!!!! xoxooxox mamamam");
         int x = Random.Range(0, 3);
         searchedForTypes.Clear();
         switch (x)
@@ -106,20 +107,11 @@ public class Game : MonoBehaviour {
 
             case 0:
                 //wood
-                switch (Random.Range(0, 3))
-                {
-                    case 1:
-                        searchedForTypes.Add(ItemScript.itemType.Wood);
-                        break;
-                    case 0:
-                        searchedForTypes.Add(ItemScript.itemType.Wood);
-                        break;
-                            case 2:
-                        searchedForTypes.Add(ItemScript.itemType.Wood);
-                        break;
-
-                }
+                searchedForTypes.Add(ItemScript.itemType.Wood);
+                
                 AudioMaterial2.Play();
+
+                //PlayAnimation
                 break;
 
                 case 2:
